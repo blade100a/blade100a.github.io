@@ -7,6 +7,13 @@ const NAV_LINKS = ['About', 'Experience', 'Projects', 'Contact'];
 
 const HEADLINE = 'Hi, i\u2019m Harri';
 
+// Safari and all iOS browsers use WebKit, which plays our WebM without its
+// alpha channel (black box). Send them straight to the transparent still.
+const NO_ALPHA_VIDEO =
+  typeof navigator !== 'undefined' &&
+  (/iphone|ipad|ipod/i.test(navigator.userAgent) ||
+    /^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+
 function TypedHeading() {
   const [count, setCount] = useState(0);
   const [done, setDone] = useState(false);
@@ -47,7 +54,7 @@ function TypedHeading() {
 
 function HeroPortrait() {
   // Try the animated loop first, then the still portrait, then the emoji
-  const [videoFailed, setVideoFailed] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(NO_ALPHA_VIDEO);
   const [videoReady, setVideoReady] = useState(false);
   const [imgFailed, setImgFailed] = useState(false);
 
@@ -126,7 +133,7 @@ export default function HeroSection() {
       </div>
 
       {/* Hero portrait with glow */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 w-[380px] -translate-x-1/2 -translate-y-1/2 sm:top-auto sm:bottom-8 sm:w-[560px] sm:translate-y-0 md:bottom-12 md:w-[740px] lg:w-[950px]">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 w-[300px] -translate-x-1/2 -translate-y-1/2 sm:top-auto sm:bottom-8 sm:w-[440px] sm:translate-y-0 md:bottom-12 md:w-[575px] lg:w-[740px]">
         {/* Glow behind the portrait */}
         <div
           className="absolute left-1/2 top-1/2 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60"

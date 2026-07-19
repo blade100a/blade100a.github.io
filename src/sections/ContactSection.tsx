@@ -39,7 +39,7 @@ export default function ContactSection() {
             label="LinkedIn"
             href="https://www.linkedin.com/in/harripahirathan/"
           />
-          <GhostButton label="GitHub" href="https://github.com/blade100a" />
+          <GhostButton label="GitHub" href="https://github.com/harripahirathan" />
         </div>
       </FadeIn>
 

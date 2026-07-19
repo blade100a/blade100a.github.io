@@ -2,7 +2,7 @@
 
 My personal resume site. Dark theme, animated hero with a 3D portrait video, scroll-driven photo marquees, sticky stacking project cards, and a click-to-view photo lightbox.
 
-**Live site:** (https://harripahirathan.github.io/)
+**Live site:** [harripahirathan.github.io](https://harripahirathan.github.io)
 
 ## Tech
 

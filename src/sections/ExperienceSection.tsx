@@ -7,35 +7,35 @@ const EXPERIENCE = [
     name: 'Zeitview',
     meta: 'Senior Flight Operations Specialist - Software Lead · 2024 - Present',
     description:
-      'Running aerial solar inspections end to end while leading internal software. I combine flight operations with development work to streamline aerial imaging, improve data pipelines, and optimize solar-site performance, with support across other verticals like oil and gas and wind.',
+      'I run aerial solar inspections end to end and lead our internal software. That covers flight planning, data collection, and building the tools that speed up our imaging and data pipelines. I also support other verticals like oil and gas and wind.',
   },
   {
     number: '02',
     name: 'Ivy Technology',
     meta: 'CTAC Engineer · 2023 - 2024',
     description:
-      'Project management and technical repair operations for global clients: coordinated robot repairs for 6 River Systems, heat sensor installs for Butlr, Microsoft Surface repairs, and medical equipment servicing for Avanos.',
+      'Repair operations and project management for global clients. I coordinated warehouse robot repairs for 6 River Systems, installed heat sensors for Butlr, ran Microsoft Surface repairs, and serviced medical equipment for Avanos.',
   },
   {
     number: '03',
     name: 'STK Taekwondo',
     meta: '3rd Degree Black Belt Instructor · 2013 - 2024',
     description:
-      'Over a decade of teaching taekwondo, building discipline, fitness, and confidence in students of all ages. National-level competitor with a Taekwondo Canada Nationals medal.',
+      'I taught taekwondo for over ten years, from kids classes to competition prep. Third degree black belt, national level competitor, and a Taekwondo Canada Nationals medallist.',
   },
   {
     number: '04',
     name: 'University of Toronto',
     meta: 'BSc, Physics, Computer Science & Statistics · Research, 2022 - 2023',
     description:
-      'Scientific computing research covering Fast Fourier Transforms, Monte Carlo methods, N-body simulations, and parallel computing with OpenMP. Graduated with a BSc across physics, computer science, and statistics.',
+      'Scientific computing research: Fast Fourier Transforms, Monte Carlo methods, N-body simulations, and parallel computing with OpenMP. I graduated with a BSc in physics, computer science, and statistics.',
   },
   {
     number: '05',
     name: 'Earlier Work',
     meta: 'Code Ninjas · CRS Networks · QuByte · 2016 - 2021',
     description:
-      'Taught 20+ student classrooms to code at Code Ninjas, built Python network-analytics visualizations at CRS Networks, and delivered end-to-end managed IT services at QuByte.',
+      'I taught kids to code at Code Ninjas, wrote Python scripts that visualized company network data at CRS Networks, and handled managed IT support at QuByte.',
   },
 ];
 

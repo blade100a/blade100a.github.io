@@ -5,7 +5,7 @@ import AnimatedText from '../components/AnimatedText';
 import ContactButton from '../components/ContactButton';
 
 const ABOUT_TEXT =
-  "Flight operations specialist and software lead at Zeitview, where i run aerial solar inspections end to end and build the internal tools that keep them flying. Physics, computer science and statistics grad from the University of Toronto, third degree black belt with over a decade of teaching taekwondo, and a jack of all trades who loves snowboarding, travel, game dev, and sneaking pokemon into real photos. Let's build something incredible together!";
+  "I'm a senior flight operations specialist and software lead at Zeitview. I fly aerial solar inspections and build the internal tools that keep them running. I studied physics, computer science, and statistics at the University of Toronto. Outside work I teach taekwondo, snowboard, travel, build games, and sneak pokemon into real photos. Want to build something? Get in touch.";
 
 const DECORATIONS = [
   {
@@ -61,6 +61,38 @@ const POLAROIDS = [
   },
 ];
 
+interface PolaroidProps {
+  src: string;
+  caption: string;
+  rotate: number;
+  className?: string;
+  onClick: () => void;
+}
+
+function Polaroid({ src, caption, rotate, className, onClick }: PolaroidProps) {
+  return (
+    <motion.button
+      type="button"
+      onClick={onClick}
+      initial={{ rotate }}
+      whileHover={{ rotate: 0, scale: 1.07 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: 'spring', stiffness: 220, damping: 16 }}
+      className={`cursor-pointer rounded-lg bg-white p-2.5 pb-9 text-left shadow-[0_15px_45px_rgba(0,0,0,0.55)] ${className ?? ''}`}
+    >
+      <img
+        src={src}
+        alt={caption}
+        loading="lazy"
+        className="aspect-[4/3] w-full rounded-sm object-cover"
+      />
+      <p className="mt-2.5 text-center text-xs font-medium uppercase tracking-[0.25em] text-[#0C0C0C] opacity-70">
+        {caption}
+      </p>
+    </motion.button>
+  );
+}
+
 export default function AboutSection() {
   const [lightbox, setLightbox] = useState<{ src: string; caption: string } | null>(
     null
@@ -99,34 +131,22 @@ export default function AboutSection() {
         </div>
       ))}
 
-      {/* Interactive pokemon polaroids -- click to enlarge */}
+      {/* Pokemon polaroids -- absolute on wide screens */}
       {POLAROIDS.map((card) => (
         <div key={card.src} className={`absolute hidden xl:block ${card.position}`}>
           <FadeIn delay={card.delay} x={card.x} y={0} duration={0.9}>
-            <motion.button
-              type="button"
+            <Polaroid
+              src={card.src}
+              caption={card.caption}
+              rotate={card.rotate}
+              className="w-[240px] 2xl:w-[300px]"
               onClick={() => setLightbox({ src: card.src, caption: card.caption })}
-              initial={{ rotate: card.rotate }}
-              whileHover={{ rotate: 0, scale: 1.07 }}
-              whileTap={{ scale: 0.96 }}
-              transition={{ type: 'spring', stiffness: 220, damping: 16 }}
-              className="w-[240px] cursor-pointer rounded-lg bg-white p-2.5 pb-10 text-left shadow-[0_15px_45px_rgba(0,0,0,0.55)] 2xl:w-[300px]"
-            >
-              <img
-                src={card.src}
-                alt={card.caption}
-                loading="lazy"
-                className="aspect-[4/3] w-full rounded-sm object-cover"
-              />
-              <p className="mt-3 text-center text-xs font-medium uppercase tracking-[0.25em] text-[#0C0C0C] opacity-70 2xl:text-sm">
-                {card.caption}
-              </p>
-            </motion.button>
+            />
           </FadeIn>
         </div>
       ))}
 
-      <div className="relative z-10 flex flex-col items-center gap-16 sm:gap-20 md:gap-24">
+      <div className="relative z-10 flex flex-col items-center gap-14 sm:gap-16 md:gap-20">
         <div className="flex flex-col items-center gap-10 sm:gap-14 md:gap-16">
           <FadeIn delay={0} y={40}>
             <h2
@@ -146,6 +166,22 @@ export default function AboutSection() {
 
         <FadeIn>
           <ContactButton />
+        </FadeIn>
+
+        {/* Pokemon polaroids -- inline on smaller screens */}
+        <FadeIn delay={0.15} y={30} className="xl:hidden">
+          <div className="flex items-start justify-center gap-5 sm:gap-8">
+            {POLAROIDS.map((card, i) => (
+              <Polaroid
+                key={card.src}
+                src={card.src}
+                caption={card.caption}
+                rotate={i === 0 ? -4 : 5}
+                className="w-[150px] sm:w-[190px]"
+                onClick={() => setLightbox({ src: card.src, caption: card.caption })}
+              />
+            ))}
+          </div>
         </FadeIn>
       </div>
 

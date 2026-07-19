@@ -23,22 +23,39 @@ const ROW_TWO = [
 
 interface RowProps {
   images: string[];
-  transform: string;
-  rowKey: string;
+  direction: 1 | -1;
+  offset: number;
 }
 
-function MarqueeRow({ images, transform, rowKey }: RowProps) {
+function MarqueeRow({ images, direction, offset }: RowProps) {
+  const rowRef = useRef<HTMLDivElement>(null);
+  const [setWidth, setSetWidth] = useState(0);
+
+  // One "set" is a third of the tripled row. Starting shifted left by a full
+  // set means the row stays covered no matter which way it scrolls.
+  useEffect(() => {
+    const measure = () => {
+      if (rowRef.current) setSetWidth(rowRef.current.scrollWidth / 3);
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
   const tripled = [...images, ...images, ...images];
+  const x = direction * (offset - 200) - setWidth;
 
   return (
-    <div className="flex gap-3" style={{ transform, willChange: 'transform' }}>
+    <div
+      ref={rowRef}
+      className="flex gap-3"
+      style={{ transform: `translateX(${x}px)`, willChange: 'transform' }}
+    >
       {tripled.map((src, i) => (
         <div
-          key={`${rowKey}-${i}`}
-          className="shrink-0 overflow-hidden rounded-2xl"
+          key={`${src}-${i}`}
+          className="h-[150px] w-[235px] shrink-0 overflow-hidden rounded-2xl sm:h-[205px] sm:w-[320px] md:h-[270px] md:w-[420px]"
           style={{
-            width: 420,
-            height: 270,
             background: 'linear-gradient(135deg, #191320 0%, #241028 50%, #1c0f14 100%)',
           }}
         >
@@ -75,16 +92,8 @@ export default function MarqueeSection() {
       ref={sectionRef}
       className="flex flex-col gap-3 bg-[#0C0C0C] pb-10 pt-24 sm:pt-32 md:pt-40"
     >
-      <MarqueeRow
-        images={ROW_ONE}
-        transform={`translateX(${offset - 200}px)`}
-        rowKey="row1"
-      />
-      <MarqueeRow
-        images={ROW_TWO}
-        transform={`translateX(${-(offset - 200)}px)`}
-        rowKey="row2"
-      />
+      <MarqueeRow images={ROW_ONE} direction={1} offset={offset} />
+      <MarqueeRow images={ROW_TWO} direction={-1} offset={offset} />
     </section>
   );
 }

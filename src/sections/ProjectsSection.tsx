@@ -127,10 +127,10 @@ const PROJECTS: Project[] = [
     number: '01',
     name: 'System Monitoring Tool',
     category: 'Systems Programming',
-    link: { label: 'View GitHub', href: 'https://github.com/blade100a' },
+    link: { label: 'View GitHub', href: 'https://github.com/harripahirathan' },
     visual: <TerminalMock />,
     description:
-      'A concurrent system monitoring tool written in C that surfaces CPU, memory, and user sessions in real time. Built with concurrency, signals, and modular design, with customizable timeframe and delay settings.',
+      'A system monitoring tool written in C. It reports CPU use, memory, and user sessions in real time, with adjustable sample counts and delays. Built with concurrency, signals, and a modular design.',
     tags: ['C', 'Concurrency', 'Signals', 'Makefiles'],
   },
   {
@@ -139,17 +139,17 @@ const PROJECTS: Project[] = [
     category: 'UI/UX Design Finalist',
     visual: <PhoneMock />,
     description:
-      'An app designed with user-centered design principles to improve the engagement of online learning during the pandemic. Reached the finals of the UofT Student Design Competition after iterating with real user feedback.',
+      'An app concept to make online learning less painful during the pandemic. I led the design, built a prototype, tested it with real users, and reached the finals of the UofT Student Design Competition.',
     tags: ['UX Research', 'Prototyping', 'Figma', 'Accessibility'],
   },
   {
     number: '03',
     name: 'This Website',
     category: 'Web Development',
-    link: { label: 'View GitHub', href: 'https://github.com/blade100a' },
+    link: { label: 'View GitHub', href: 'https://github.com/harripahirathan' },
     visual: <BrowserMock />,
     description:
-      'The site you are looking at right now. React and TypeScript with Tailwind CSS and Framer Motion: scroll-driven marquees, character reveals, magnetic hover, and these sticky stacking cards.',
+      'The site you are looking at right now. React and TypeScript with Tailwind and Framer Motion: scroll driven marquees, a typed heading, magnetic hover, and these stacking cards.',
     tags: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'],
   },
 ];
