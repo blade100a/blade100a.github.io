@@ -54,15 +54,30 @@ function TypedHeading() {
 
 function HeroPortrait() {
   // Try the animated loop first, then the still portrait, then the emoji
-  const [videoFailed, setVideoFailed] = useState(NO_ALPHA_VIDEO);
+  const [videoFailed, setVideoFailed] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
   const [imgFailed, setImgFailed] = useState(false);
+
+  // WebKit gets the MP4 with a CSS fade shaped to the video's black padding,
+  // so the frame edges dissolve before the border and the head stays untouched.
+  const fadeH =
+    'linear-gradient(to right, transparent 0%, black 13%, black 87%, transparent 100%)';
+  const fadeV =
+    'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)';
+  const webkitMask = NO_ALPHA_VIDEO
+    ? {
+        WebkitMaskImage: `${fadeH}, ${fadeV}`,
+        WebkitMaskComposite: 'destination-in',
+        maskImage: `${fadeH}, ${fadeV}`,
+        maskComposite: 'intersect',
+      }
+    : undefined;
 
   return (
     <>
       {!videoFailed && (
         <video
-          src="images/portrait-loop.webm"
+          src={NO_ALPHA_VIDEO ? 'images/portrait-loop.mp4' : 'images/portrait-loop.webm'}
           autoPlay
           muted
           loop
@@ -70,6 +85,7 @@ function HeroPortrait() {
           onLoadedData={() => setVideoReady(true)}
           onError={() => setVideoFailed(true)}
           className={videoReady ? 'block w-full object-contain' : 'hidden'}
+          style={webkitMask}
         />
       )}
       {!videoReady &&
